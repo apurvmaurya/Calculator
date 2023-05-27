@@ -7,9 +7,9 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40%;
+    width: 60%;
     height: 80vh;
-    margin-left: 30%;
+    margin-left: 20%;
 }
 
 .buttons{
@@ -25,7 +25,6 @@ body{
     background-color: black;
     text-align: right;
     color: white;
-    width: 100%;
     font-size: auto;
 }
 
