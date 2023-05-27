@@ -36,9 +36,9 @@ function calculator(value)
     {
         result = operation() ;
         num1 = result;
-        displayResult = result;
+        displayResult = result.toString();
         num2 = 0;
-        n1=true;
+        n1 = true;
     } 
     else 
     {
@@ -46,7 +46,6 @@ function calculator(value)
         {
             num1 = operation2(operator);
             num2 = 0 ;
-            n2 = true ;
         }
         operator = value;
         displayResult = displayResult + value ;
