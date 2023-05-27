@@ -1,0 +1,42 @@
+body{
+    scroll-behavior: smooth;
+    background-color: antiquewhite;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 80vh;
+    margin-left: 30%;
+}
+
+.buttons{
+    margin-top: 20px;
+    display: grid;
+    grid-template: 1fr 1fr 1fr 1fr  1fr / 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    text-align: center;
+}
+
+.result{
+    grid-column: span 4;
+    background-color: black;
+    text-align: right;
+    color: white;
+    width: 100%;
+    font-size: auto;
+}
+
+.clear{
+    grid-column: span 2;
+}
+
+.equal{
+    grid-column: span 2;
+}
+
+.zero{
+    grid-column: span 2;
+}
