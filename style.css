@@ -67,3 +67,13 @@ footer{
     font-weight: bold;
     font-family:sans-serif;
 }
+
+@media (max-width:480px){
+    .result{
+        font-size: 2rem;
+    }
+
+    .button >button {
+        font-size: 2rem;    
+    }
+}
