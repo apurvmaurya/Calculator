@@ -76,4 +76,9 @@ footer{
     .button >button {
         font-size: 2rem;    
     }
+    
+    .container{
+        width : 100% ;
+        margin-left : 0 ;
+        height : 80vh ;
 }
