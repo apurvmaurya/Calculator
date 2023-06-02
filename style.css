@@ -78,9 +78,8 @@ footer{
     }
     
     .container{
-        width : 90% ;
-        align-items: center;
+        width : 95% ;
+        margin: 0;
         height : 80vh ;
-
     }
 }
