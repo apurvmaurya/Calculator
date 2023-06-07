@@ -2,6 +2,8 @@ var num1 = 0 ;
 var num2 = 0 ;
 var n1 = true ;
 var n2 = true ;
+var dot = false ;
+var power = 0;
 var displayResult = "";
 var result ;
 var operator ;
@@ -14,12 +16,32 @@ function calculator(value)
     {
         if(n1===true)
         {
-            num1 = num1 * 10 + value ;
+            if(dot===true)
+            {
+                num1 = num1 * Math.pow(10,power);
+                num1 = num1 * 10 + value ;
+                power++;
+                num1 = num1/Math.pow(10,power);
+            }
+            else
+            {
+                num1 = num1 * 10 + value ;
+            }
             displayResult = displayResult + value ;
         } 
         else if(n2===true)
         {
-            num2 = num2 * 10 + value ;
+            if(dot===true)
+            {
+                num2 = num2 * Math.pow(10,power);
+                num2 = num2 * 10 + value ;
+                power++;
+                num2 = num2/Math.pow(10,power);
+            }
+            else 
+            {
+                num2 = num2 * 10 + value ;
+            }
             displayResult = displayResult + value ;
         } 
     } 
@@ -31,7 +53,14 @@ function calculator(value)
         n2 = true ;
         num1 = 0;
         num2 = 0;
+        dot = false;
+        power = 0 ;
     } 
+    else if(value===".")
+    {
+        dot=true;
+        displayResult = displayResult + value ;  
+    }
     else if(value==="=") 
     {
         result = operation() ;
@@ -39,6 +68,8 @@ function calculator(value)
         displayResult = result.toString();
         num2 = 0;
         n1 = true;
+        dot = false;
+        power  = 0 ;
     } 
     else 
     {
@@ -48,6 +79,8 @@ function calculator(value)
             num2 = 0 ;
         }
         operator = value;
+        dot = false ;
+        power = 0 ;
         displayResult = displayResult + value ;
         n1 = false ;
     }
