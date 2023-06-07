@@ -32,9 +32,6 @@ body{
     grid-column: span 2;
 }
 
-.zero{
-    grid-column: span 2;
-}
 
 .result{
     width: 100%;
