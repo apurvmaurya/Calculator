@@ -45,6 +45,38 @@ function calculator(value)
             displayResult = displayResult + value ;
         } 
     } 
+    else if(value==="<")
+    {
+        if(n1===true)
+        {
+            if(dot===true)
+            {
+                num1 = num1 * Math.pow(10,power);
+                num1 = Math.floor(num1 / 10)  ;
+                power--;
+                num1 = num1/Math.pow(10,power);
+            }
+            else
+            {
+                num1 = Math.floor(num1 / 10) ;
+            }
+        } 
+        else if(n2===true)
+        {
+            if(dot===true)
+            {
+                num2 = num2 * Math.pow(10,power);
+                num2 = Math.floor(num2 / 10)  ;
+                power--;
+                num2 = num2/Math.pow(10,power);
+            }
+            else 
+            {
+                num2 = Math.floor(num2 / 10)  ;
+            }
+        }
+        displayResult = displayResult.slice(0,-1);
+    }
     else if(value==="AC") 
     {
         result = 0 ;
