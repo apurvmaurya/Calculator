@@ -1,174 +1,141 @@
-var num1 = 0 ;
-var num2 = 0 ;
-var n1 = true ;
-var n2 = true ;
-var dot = false ;
-var power = 0;
-var displayResult = "";
-var result ;
-var operator ;
-var operationResult ;
 var display = document.querySelector(".result");
 
-function calculator(value)
+var displayResult = "" ;
+
+function updateResult(value)
 {
-    if(value>=0 && value<=9)
+    displayResult = display.value ;
+    
+    if(value ==="AC")
     {
-        if(n1===true)
-        {
-            if(dot===true)
-            {
-                num1 = num1 * Math.pow(10,power);
-                num1 = num1 * 10 + value ;
-                power++;
-                num1 = num1/Math.pow(10,power);
-            }
-            else
-            {
-                num1 = num1 * 10 + value ;
-            }
-            displayResult = displayResult + value ;
-        } 
-        else if(n2===true)
-        {
-            if(dot===true)
-            {
-                num2 = num2 * Math.pow(10,power);
-                num2 = num2 * 10 + value ;
-                power++;
-                num2 = num2/Math.pow(10,power);
-            }
-            else 
-            {
-                num2 = num2 * 10 + value ;
-            }
-            displayResult = displayResult + value ;
-        } 
-    } 
-    else if(value==="<")
+        displayResult = ""; 
+    }
+    
+    else if(value === "=")
     {
-        if(n1===true)
-        {
-            if(dot===true)
-            {
-                num1 = num1 * Math.pow(10,power);
-                num1 = Math.floor(num1 / 10)  ;
-                power--;
-                num1 = num1/Math.pow(10,power);
-            }
-            else
-            {
-                num1 = Math.floor(num1 / 10) ;
-            }
-        } 
-        else if(n2===true)
-        {
-            if(dot===true)
-            {
-                num2 = num2 * Math.pow(10,power);
-                num2 = Math.floor(num2 / 10)  ;
-                power--;
-                num2 = num2/Math.pow(10,power);
-            }
-            else 
-            {
-                num2 = Math.floor(num2 / 10)  ;
-            }
-        }
+        displayResult = calculator(display.value).toString();
+    }
+    
+    else if(value  === "<")
+    {
         displayResult = displayResult.slice(0,-1);
     }
-    else if(value==="AC") 
+    
+    else
     {
-        result = 0 ;
-        displayResult = "";
-        n1 = true ;
-        n2 = true ;
-        num1 = 0;
-        num2 = 0;
-        dot = false;
-        power = 0 ;
-    } 
-    else if(value===".")
-    {
-        dot=true;
-        displayResult = displayResult + value ;  
-    }
-    else if(value==="=") 
-    {
-        result = operation() ;
-        num1 = result;
-        displayResult = result.toString();
-        num2 = 0;
-        n1 = true;
-        dot = false;
-        power  = 0 ;
-    } 
-    else 
-    {
-        if(n1===false)
-        {
-            num1 = operation2(operator);
-            num2 = 0 ;
-        }
-        operator = value;
-        dot = false ;
-        power = 0 ;
         displayResult = displayResult + value ;
-        n1 = false ;
     }
-    display.innerHTML = displayResult ;
+    
+    display.value = displayResult ; 
 }
 
-function operation()
+function calculator(str)
 {
-    switch (operator)
+    var expression = str ;
+
+    var num1 = 0;
+
+    var num2 = 0;
+
+    var operator = false ;
+
+    var count = 0 ;
+
+    var operation ;
+
+    var length = expression.length ;
+
+    for(var i = 0 ; i < length ; i++) 
     {
-        case "+" : 
+        var digit = str[i];
+
+        if((digit !== "+") && (digit !== "-") && (digit !== "X") && (digit !== "÷") && (digit !== "%") && (digit !== "/"))
         {
-            return num1 + num2 ;
-        } 
-        case "-" : 
-        {
-            return num1 - num2 ;
-        } 
-        case "X" : 
-        {
-            return num1 * num2 ;
-        } 
-        case "/" : 
-        {
-            return num1 / num2 ;
+            count++;
+
+            if(i === length-1)
+            {
+                num2 = parseFloat(expression.slice(0));
+
+                return perform();
+            }
         }
-        case "%" :
+
+        else 
         {
-            return num1 % num2 ;
+            if(operator === true)
+            {
+                num2 = parseFloat(expression.slice(0,count));
+
+                expression = expression.slice(count+1);
+
+                count = 0;
+
+                num1 = perform();
+
+                num2 = 0 ;
+            }
+
+            else
+            {
+                num1 = parseFloat(expression.slice(0,count));
+
+                expression = expression.slice(count+1);
+
+                count = 0 ;
+
+                operator = true ;
+            }
+
+            operation = digit;
         }
     }
-}
 
-function operation2(operator) 
-{
-    switch (operator)
+    function perform()
     {
-        case "+" : 
+        switch(operation)
         {
-            return num1 + num2 ;
-        } 
-        case "-" : 
-        {
-            return num1 - num2 ;
-        } 
-        case "X" : 
-        {
-            return num1 * num2 ;
-        } 
-        case "/" : 
-        {
-            return num1 /num2 ;
+            case "+" :
+            {
+                return num1 + num2 ;
+
+                break ;
+            }
+
+            case "-" :
+            {
+                return num1 - num2 ;
+
+                break ;
+            }
+
+            case "X" :
+            {
+                return num1 * num2 ;
+
+                break ;
+            }
+
+            case "÷" :
+            {
+                return num1 / num2 ;
+
+                break ;
+            }
+
+            case "/" :
+            {
+                return num1 / num2 ;
+
+                break;  
+            }
+
+            case "%" :
+            {
+                return num1 % num2 ;
+                
+                break ;
+            }
         }
-        case "%" :
-        {
-            return num1 % num2 ;
-        }   
     }
 }
